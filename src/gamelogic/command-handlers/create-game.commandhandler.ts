@@ -1,8 +1,8 @@
-import { ICommandHandler } from "../../commons/commands/commandhandler"
-import {CreateGameCommand} from "../../commons/commands/gamelogic/create-game.command"
+import { IEventHandler } from "../../commons/event-handler/eventhandler"
+import { CreateGameCommand } from "../../commons/commands/gamelogic/create-game.command"
 
-export class CreateGameCommandHandler implements ICommandHandler<CreateGameCommand> {
+export class CreateGameCommandHandler implements IEventHandler<CreateGameCommand> {
     execute = async (command: CreateGameCommand) => {
-        
+
     }
 }

@@ -1,3 +1,3 @@
-export interface ICommandHandler<T> {
+export interface IEventHandler<T> {
     execute: (command: T) => Promise<void>
 }
