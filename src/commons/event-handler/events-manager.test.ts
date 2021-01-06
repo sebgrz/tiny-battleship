@@ -1,6 +1,6 @@
-import { IEvent } from "../../event-handler/event";
-import { IEventHandler } from "../../event-handler/eventhandler"
-import { EventsManager } from "../../event-handler/events-manager"
+import { IEvent } from "./event";
+import { IEventHandler } from "./eventhandler"
+import { EventsManager } from "./events-manager"
 
 class TestCommand implements IEvent {
     type = "TestCommand";
