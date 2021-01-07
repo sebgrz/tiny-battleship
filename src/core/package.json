@@ -1,5 +1,5 @@
 {
-  "name": "gamelogic",
+  "name": "core",
   "version": "0.0.1",
   "description": "",
   "main": "out/index.js",
@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eventstore/db-client": "0.0.0-alpha.12",
-    "uuidv4": "^6.2.6"
+    "@eventstore/db-client": "0.0.0-alpha.12"
   }
 }
