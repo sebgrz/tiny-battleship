@@ -1,6 +1,8 @@
-import { CreateGameCommand } from "../commons/commands/gamelogic/create-game.command"
-import { EventsManager } from "../commons/event-handler/events-manager"
-import { CreateGameCommandHandler } from "./command-handlers/create-game.commandhandler"
+import { EventStoreDB } from "../core/eventstore/eventstore.db";
+import { IEventStore } from "../core/eventstore/eventstore";
+import { commandsManager } from "./command-handlers";
 
-let commandsManager = new EventsManager()
-commandsManager.register(CreateGameCommand, CreateGameCommandHandler)
+export const gameLogic = {
+    eventStore: new EventStoreDB(process.env.eventstoredb_endpoint as string, "game_") as IEventStore,
+    commandsManager: commandsManager
+}
