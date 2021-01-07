@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eventstore/db-client": "0.0.0-alpha.12"
+    "@eventstore/db-client": "0.0.0-alpha.12",
+    "@types/amqplib": "^0.5.17",
+    "amqplib": "^0.6.0"
   }
 }
