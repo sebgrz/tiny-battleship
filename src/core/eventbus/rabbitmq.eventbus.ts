@@ -3,7 +3,16 @@ import { IEventBus } from "./eventbus";
 import amqp from "amqplib";
 
 export class RabbitMQEventBus implements IEventBus {
+    private producerChannel?: amqp.Channel
+
     constructor(private endpoint: string, private exchange: string, private queue?: string) {
+        let init = async () => {
+            if (!queue) {
+                let connection = await amqp.connect(this.endpoint)
+                this.producerChannel = await connection.createChannel()
+            }
+        }
+        init()
     }
 
     consume = async (callback: (ev: IEvent) => Promise<void>) => {
@@ -25,7 +34,10 @@ export class RabbitMQEventBus implements IEventBus {
     }
 
     send = async (ev: IEvent) => {
-        // TODO:
+        if (this.producerChannel) {
+            await this.producerChannel.assertExchange(this.exchange, "fanout", { durable: true, autoDelete: false })
+            this.producerChannel.publish(this.exchange, "", Buffer.from(JSON.stringify(ev)))
+        }
     }
 
 }
