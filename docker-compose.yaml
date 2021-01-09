@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  rabbit:
+    image: rabbitmq:3.8.3-management-alpine
+    ports:
+      - 5673:5672
+      - 15673:15672
+  eventstore-db:
+    image: eventstore/eventstore:20.10.0-bionic
+    ports:
+      - 2113:2113
+      - 1113:1113
+    command: --insecure --run-projections=All --enable-atom-pub-over-http
