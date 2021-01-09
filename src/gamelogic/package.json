@@ -2,14 +2,17 @@
   "name": "gamelogic",
   "version": "0.0.1",
   "description": "",
-  "main": "out/index.js",
+  "main": "out/gamelogic/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -dfr out && tsc --build tsconfig.json",
+    "start": "node out/gamelogic/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@eventstore/db-client": "0.0.0-alpha.12",
+    "amqplib": "^0.6.0",
     "dotenv": "^8.2.0",
     "uuidv4": "^6.2.6"
   }
