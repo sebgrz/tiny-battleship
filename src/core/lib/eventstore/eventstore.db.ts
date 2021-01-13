@@ -1,6 +1,6 @@
-import { IEvent } from "../../commons/event-handler/event";
 import { IEventStore } from "./eventstore";
-import { EventData, EventStoreDBClient, FORWARDS, jsonEvent, JSONEventData, ReadRevision, ResolvedEvent, START } from "@eventstore/db-client"
+import { EventData, EventStoreDBClient, FORWARDS, jsonEvent, ReadRevision, ResolvedEvent, START } from "@eventstore/db-client"
+import { IEvent } from "@tb/commons";
 
 export class EventStoreDB implements IEventStore {
     client?: EventStoreDBClient

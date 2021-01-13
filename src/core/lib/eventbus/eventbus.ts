@@ -1,4 +1,4 @@
-import { IEvent } from "../../commons/event-handler/event";
+import { IEvent } from "@tb/commons"
 
 export interface IEventBus extends IEventBusConsumer, IEventBusSender {
 }

@@ -1,4 +1,4 @@
-import { IEvent } from "../../commons/event-handler/event";
+import { IEvent } from "@tb/commons";
 
 export interface IEventStore {
     saveEvents: (key: string, events: IEvent[]) => Promise<void>

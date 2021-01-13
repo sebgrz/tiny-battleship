@@ -1,9 +1,6 @@
-import { EventStoreDB } from "../core/eventstore/eventstore.db";
-import { IEventStore } from "../core/eventstore/eventstore";
 import { commandsManager } from "./command-handlers";
-import { RabbitMQEventBus } from "../core/eventbus/rabbitmq.eventbus"
-import { IEventBusConsumer } from "../core/eventbus/eventbus"
 import env from "dotenv";
+import { EventStoreDB, IEventBusConsumer, IEventStore, RabbitMQEventBus } from "@tb/core";
 
 env.config()
 

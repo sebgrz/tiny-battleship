@@ -1,6 +1,6 @@
-import { IEvent } from "../../commons/event-handler/event";
 import { IEventBus } from "./eventbus";
 import amqp from "amqplib";
+import { IEvent } from "@tb/commons";
 
 export class RabbitMQEventBus implements IEventBus {
     private producerChannel?: amqp.Channel
