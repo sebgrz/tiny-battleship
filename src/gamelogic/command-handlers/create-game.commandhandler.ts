@@ -1,7 +1,5 @@
-import { IEventHandler } from "../../commons/event-handler/eventhandler"
-import { CreateGameCommand } from "../../commons/commands/gamelogic/create-game.command"
+import { CreateGameCommand, GameCreatedEvent, IEventHandler } from "@tb/commons";
 import { v4 as uuidv4 } from "uuid"
-import { GameCreatedEvent } from "../../commons/events/gamelogic/game-created.event"
 import { gameLogic } from ".."
 
 export class CreateGameCommandHandler implements IEventHandler<CreateGameCommand> {
@@ -14,7 +12,7 @@ export class CreateGameCommandHandler implements IEventHandler<CreateGameCommand
         event.gameID = gameID
 
         await gameLogic.eventStore.saveEvents(gameID, [event])
-                
+
         // TODO:  push to service bus
-    }   
+    }
 }

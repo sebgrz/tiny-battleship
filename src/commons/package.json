@@ -1,8 +1,8 @@
 {
-  "name": "@tb/core",
+  "name": "@tb/commons",
   "version": "0.0.0",
   "description": "",
-  "main": "out/core.js",
+  "main": "out/commons.js",
   "directories": {
     "lib": "out"
   },
@@ -13,9 +13,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eventstore/db-client": "0.0.0-alpha.12",
-    "@tb/commons": "^0.0.0",
-    "@types/amqplib": "^0.5.17",
-    "amqplib": "^0.6.0"
   }
 }
