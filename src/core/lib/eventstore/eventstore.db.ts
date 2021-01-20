@@ -7,7 +7,8 @@ export class EventStoreDB implements IEventStore {
     keyPrefix = ""
 
     constructor(connectionString: string, keyPrefix: string) {
-        this.client = new EventStoreDBClient({ endpoint: connectionString })
+        console.log("ES conn: " + connectionString)
+        this.client = new EventStoreDBClient({ endpoint: connectionString }, {insecure: true})
         this.keyPrefix = keyPrefix
     }
 
@@ -21,7 +22,6 @@ export class EventStoreDB implements IEventStore {
             })
             dbEnvents.push(e)
         }
-
         await this.client?.appendToStream(stream, dbEnvents)
     }
 

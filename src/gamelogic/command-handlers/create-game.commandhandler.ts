@@ -10,6 +10,7 @@ export class CreateGameCommandHandler implements IEventHandler<CreateGameCommand
         event.creatorPlayer = command.username
         event.creatoreBoard = command.board
         event.gameID = gameID
+        event.name = command.gameName
 
         await gameLogic.eventStore.saveEvents(gameID, [event])
 

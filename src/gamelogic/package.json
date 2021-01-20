@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eventstore/db-client": "0.0.0-alpha.12",
+    "@eventstore/db-client": "0.0.0-alpha.13",
     "@tb/commons": "^0.0.0",
     "@tb/core": "^0.0.0",
     "dotenv": "^8.2.0",

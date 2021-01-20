@@ -6,7 +6,10 @@ env.config()
 
 export const gameLogic = {
     eventStore: new EventStoreDB(process.env.EVENTSTOREDB_ENDPOINT as string, "game_") as IEventStore,
-    consumerEventBus: new RabbitMQEventBus(process.env.RABBITMQ_ENDPOINT as string, process.env.RABBITMQ_GAMES_EXCHANGE as string) as IEventBusConsumer,
+    consumerEventBus: new RabbitMQEventBus(
+        process.env.RABBITMQ_ENDPOINT as string, 
+        process.env.RABBITMQ_GAMES_EXCHANGE as string,
+        process.env.RABBITMQ_GAMES_QUEUE as string) as IEventBusConsumer,
     commandsManager: commandsManager
 }
 

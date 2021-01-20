@@ -25,6 +25,7 @@ export class RabbitMQEventBus implements IEventBus {
 
         channel.consume(this.queue!, async msg => {
             try {
+                console.log("rcv event: " + msg?.content)
                 let ev = JSON.parse(msg?.content.toString() ?? "") as IEvent
                 await callback(ev)
             } finally {
