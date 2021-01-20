@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubunt-lates
+    runs-on: ubunt-latest
     steps:
     - uses: actions/checkout@v2
     - name: Tests
