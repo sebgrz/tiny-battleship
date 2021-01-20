@@ -1,6 +1,7 @@
-import { CreateGameCommand, GameCreatedEvent, IEvent } from "@tb/commons";
+import { CreateGameCommand, GameCreatedEvent, IEvent, JoinGameCommand, JoinedToGameEvent } from "@tb/commons";
 import { GameState } from "./game.state";
 import { v4 as uuidv4 } from "uuid"
+import { commandsManager } from "../command-handlers";
 
 export class GameAggregator {
     private pendingEvents: IEvent[] = []
@@ -8,6 +9,7 @@ export class GameAggregator {
     state?: GameState
 
     replay = (events: IEvent[]) => {
+        // TODO: to implement
     }
 
     getPendingEvents = ():IEvent[] => {
@@ -30,5 +32,15 @@ export class GameAggregator {
 
         this.pendingEvents.push(event)
         return gameID
+    }
+
+    joinToGame = (command: JoinGameCommand) => {
+        let event = new JoinedToGameEvent()
+        event.connectionId = command.connectionId
+        event.gameID = command.gameID
+        event.player = command.username
+        event.board = command.board
+
+        this.pendingEvents.push(event)
     }
 }
