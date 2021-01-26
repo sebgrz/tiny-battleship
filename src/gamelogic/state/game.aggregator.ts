@@ -1,7 +1,6 @@
-import { CreateGameCommand, GameCreatedEvent, IEvent, JoinGameCommand, JoinedToGameEvent } from "@tb/commons";
+import { CreateGameCommand, GameCreatedEvent, IEvent, JoinGameCommand, JoinedToGameEvent, LeaveGameCommand, GameOverEvent, GameOverReason } from "@tb/commons";
 import { GameState } from "./game.state";
 import { v4 as uuidv4 } from "uuid"
-import { commandsManager } from "../command-handlers";
 
 export class GameAggregator {
     private pendingEvents: IEvent[] = []
@@ -40,6 +39,17 @@ export class GameAggregator {
         event.gameID = command.gameID
         event.player = command.username
         event.board = command.board
+
+        this.pendingEvents.push(event)
+    }
+
+    leaveGame = (command: LeaveGameCommand) => {
+        let winner = this.state?.players.filter(f => f.connectionId != command.connectionId)[0]
+
+        let event = new GameOverEvent()
+        event.gameID = this.state?.id ?? ""
+        event.reason = GameOverReason.Escape
+        event.winnerID = winner?.connectionId ?? ""
 
         this.pendingEvents.push(event)
     }
