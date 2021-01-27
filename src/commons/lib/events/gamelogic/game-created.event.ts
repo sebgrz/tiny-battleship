@@ -7,4 +7,5 @@ export class GameCreatedEvent implements IEvent {
     creatorConnectionId: string = ""
     name: string = ""
     creatoreBoard?: number[][]
+    shipsCount: number = 0
 }

@@ -7,4 +7,5 @@ export class JoinedToGameEvent implements IEvent {
     connectionID: string = ""
     opponentConnectionID: string = ""
     board?: number[][]
+    shipsCount: number = 0
 }

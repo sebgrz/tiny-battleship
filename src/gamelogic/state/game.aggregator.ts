@@ -21,6 +21,17 @@ export class GameAggregator {
 
     /// Modfications
     createGame = (command: CreateGameCommand): string => {
+        let shipCounter = 0
+
+        // Looking for any ship on a player board
+        command.board?.forEach(line => {
+            line.forEach(field => {
+                if (field == 1) {
+                    shipCounter++
+                }
+            })
+        })
+
         let gameID = uuidv4()
         let event = new GameCreatedEvent()
         event.creatorConnectionId = command.connectionId
@@ -28,6 +39,7 @@ export class GameAggregator {
         event.creatoreBoard = command.board
         event.gameID = gameID
         event.name = command.gameName
+        event.shipsCount = shipCounter
 
         this.pendingEvents.push(event)
         return gameID
@@ -35,12 +47,25 @@ export class GameAggregator {
 
     joinToGame = (command: JoinGameCommand) => {
         let opponent = this.state?.players[0]
+
+        let shipCounter = 0
+
+        // Looking for any ship on a player board
+        command.board?.forEach(line => {
+            line.forEach(field => {
+                if (field == 1) {
+                    shipCounter++
+                }
+            })
+        })
+
         let event = new JoinedToGameEvent()
         event.connectionID = command.connectionId
         event.opponentConnectionID = opponent!.connectionId
         event.gameID = command.gameID
         event.player = command.username
         event.board = command.board
+        event.shipsCount = shipCounter
 
         this.pendingEvents.push(event)
     }
