@@ -40,6 +40,22 @@ export class GameAggregator {
                     })
                     break
                 }
+                case "GameOverEvent": {
+                    let ev = event as GameOverEvent
+                    let winnerIndex = this.state?.players.findIndex(f => f.connectionId != ev.winnerConnectionID)
+                    if (!winnerIndex) {
+                        break
+                    }
+                    this.state!.players[winnerIndex].isWinner = true
+                    break
+                }
+                case "HitFieldEvent":{
+                    let ev = event as HitFieldEvent
+                    let gotHitIndex = this.state?.players.findIndex(f => f.connectionId != ev.whoGotHitConnectionID)
+                    this.state!.players[gotHitIndex!].board[ev.hitPosition!.x][ev.hitPosition!.y] = 3 // 3 - it means hit
+                    this.state!.players[gotHitIndex!].shipsCount--
+                    break
+                }
                 default:
                     return
             }
