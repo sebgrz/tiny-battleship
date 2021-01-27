@@ -8,7 +8,42 @@ export class GameAggregator {
     state?: GameState
 
     replay = (events: IEvent[]) => {
-        // TODO: to implement
+        for (let event of events) {
+            switch (event.type) {
+                case "GameCreatedEvent": {
+                    let ev = event as GameCreatedEvent
+                    this.state = {
+                        id: ev.gameID,
+                        name: ev.name,
+                        players: [
+                            {
+                                connectionId: ev.creatorConnectionId,
+                                name: ev.creatorPlayer,
+                                isWinner: false,
+                                isNextMove: false,
+                                board: ev.creatoreBoard!,
+                                shipsCount: ev.shipsCount
+                            }
+                        ]
+                    }
+                    break
+                }
+                case "JoinedToGameEvent": {
+                    let ev = event as JoinedToGameEvent
+                    this.state?.players.push({
+                        connectionId: ev.connectionID,
+                        name: ev.player,
+                        isWinner: false,
+                        isNextMove: false,
+                        board: ev.board!,
+                        shipsCount: ev.shipsCount
+                    })
+                    break
+                }
+                default:
+                    return
+            }
+        }
     }
 
     getPendingEvents = (): IEvent[] => {
