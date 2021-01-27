@@ -4,6 +4,7 @@ export class JoinedToGameEvent implements IEvent {
     type = "JoinedToGameEvent"
     gameID: string = ""
     player: string = ""
-    connectionId: string = ""
+    connectionID: string = ""
+    opponentConnectionID: string = ""
     board?: number[][]
 }

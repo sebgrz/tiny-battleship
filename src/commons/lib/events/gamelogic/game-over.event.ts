@@ -3,7 +3,8 @@ import { IEvent } from "../../commons"
 export class GameOverEvent implements IEvent {
     type = "GameOverEvent"
     gameID: string = ""
-    winnerID: string = ""
+    winnerConnectionID: string = ""
+    loserConnectionID: string = ""
     reason: GameOverReason = GameOverReason.Unknown
 }
 
