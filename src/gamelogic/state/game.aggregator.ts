@@ -8,7 +8,64 @@ export class GameAggregator {
     state?: GameState
 
     replay = (events: IEvent[]) => {
-        // TODO: to implement
+        for (let event of events) {
+            switch (event.type) {
+                case "GameCreatedEvent": {
+                    let ev = event as GameCreatedEvent
+                    this.state = {
+                        id: ev.gameID,
+                        name: ev.name,
+                        players: [
+                            {
+                                connectionId: ev.creatorConnectionId,
+                                name: ev.creatorPlayer,
+                                isWinner: false,
+                                isNextMove: false,
+                                board: ev.creatoreBoard!,
+                                shipsCount: ev.shipsCount
+                            }
+                        ]
+                    }
+                    break
+                }
+                case "JoinedToGameEvent": {
+                    let ev = event as JoinedToGameEvent
+                    this.state?.players.push({
+                        connectionId: ev.connectionID,
+                        name: ev.player,
+                        isWinner: false,
+                        isNextMove: false,
+                        board: ev.board!,
+                        shipsCount: ev.shipsCount
+                    })
+                    break
+                }
+                case "GameOverEvent": {
+                    let ev = event as GameOverEvent
+                    let winnerIndex = this.state?.players.findIndex(f => f.connectionId != ev.winnerConnectionID)
+                    if (!winnerIndex) {
+                        break
+                    }
+                    this.state!.players[winnerIndex].isWinner = true
+                    break
+                }
+                case "HitFieldEvent": {
+                    let ev = event as HitFieldEvent
+                    let gotHitIndex = this.state?.players.findIndex(f => f.connectionId != ev.whoGotHitConnectionID)
+                    this.state!.players[gotHitIndex!].board[ev.hitPosition!.x][ev.hitPosition!.y] = 3 // 3 - it means hit
+                    this.state!.players[gotHitIndex!].shipsCount--
+                    break
+                }
+                case "MishitFieldEvent": {
+                    let ev = event as MishitFieldEvent
+                    let gotHitIndex = this.state?.players.findIndex(f => f.connectionId != ev.whoGotMishitConnectionID)
+                    this.state!.players[gotHitIndex!].board[ev.mishitPosition!.x][ev.mishitPosition!.y] = 2 // 2 - it means miss
+                    break
+                }
+                default:
+                    return
+            }
+        }
     }
 
     getPendingEvents = (): IEvent[] => {
