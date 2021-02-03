@@ -49,11 +49,17 @@ export class GameAggregator {
                     this.state!.players[winnerIndex].isWinner = true
                     break
                 }
-                case "HitFieldEvent":{
+                case "HitFieldEvent": {
                     let ev = event as HitFieldEvent
                     let gotHitIndex = this.state?.players.findIndex(f => f.connectionId != ev.whoGotHitConnectionID)
                     this.state!.players[gotHitIndex!].board[ev.hitPosition!.x][ev.hitPosition!.y] = 3 // 3 - it means hit
                     this.state!.players[gotHitIndex!].shipsCount--
+                    break
+                }
+                case "MishitFieldEvent": {
+                    let ev = event as MishitFieldEvent
+                    let gotHitIndex = this.state?.players.findIndex(f => f.connectionId != ev.whoGotMishitConnectionID)
+                    this.state!.players[gotHitIndex!].board[ev.mishitPosition!.x][ev.mishitPosition!.y] = 2 // 2 - it means miss
                     break
                 }
                 default:
