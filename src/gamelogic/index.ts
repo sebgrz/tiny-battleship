@@ -1,6 +1,7 @@
 import { commandsManager } from "./command-handlers";
 import env from "dotenv";
-import { EventStoreDB, IEventBusConsumer, IEventStore, RabbitMQEventBus } from "@tb/core";
+import { EventStoreDB, IEventBusConsumer, IEventStore, RabbitMQEventBus, IEventBusSender } from "@tb/core";
+import { ReadReq } from "@eventstore/db-client/generated/streams_pb";
 
 env.config()
 
@@ -10,6 +11,9 @@ export const gameLogic = {
         process.env.RABBITMQ_ENDPOINT as string, 
         process.env.RABBITMQ_GAMES_EXCHANGE as string,
         process.env.RABBITMQ_GAMES_QUEUE as string) as IEventBusConsumer,
+    producerEventBus: new RabbitMQEventBus(
+        process.env.RABBITMQ_ENDPOINT as string, 
+        process.env.RABBITMQ_GAMESLOGIC_EVENTS_EXCHANGE as string) as IEventBusSender,
     commandsManager: commandsManager
 }
 
