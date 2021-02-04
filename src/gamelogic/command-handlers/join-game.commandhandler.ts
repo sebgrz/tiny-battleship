@@ -13,7 +13,9 @@ export class JoinGameCommandHandler implements IEventHandler<JoinGameCommand> {
             return
         }
         aggr.joinToGame(command)
-        await gameLogic.eventStore.saveEvents(command.gameID, aggr.getPendingEvents())
-        // TODO:  push to service bus
+        events = aggr.getPendingEvents()
+        
+        await gameLogic.eventStore.saveEvents(command.gameID, events)
+        events.forEach(async e => gameLogic.producerEventBus.send(e))
     }
 }

@@ -8,8 +8,9 @@ export class ShotCommandHandler implements IEventHandler<ShotCommand> {
         let aggr = new GameAggregator()
         aggr.replay(events)
         aggr.shot(command)
+        events = aggr.getPendingEvents()
 
-        await gameLogic.eventStore.saveEvents(command.gameID, aggr.getPendingEvents())
-        // TODO:  push to service bus
+        await gameLogic.eventStore.saveEvents(command.gameID, events)
+        events.forEach(async e => gameLogic.producerEventBus.send(e))
     }
 }
