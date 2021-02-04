@@ -12,6 +12,6 @@ export class LeaveGameCommandHandler implements IEventHandler<LeaveGameCommand> 
         events =  aggr.getPendingEvents()
 
         await gameLogic.eventStore.saveEvents(command.gameID, events)
-        events.forEach(async e => gameLogic.producerEventBus.send(e))
+        events.forEach(async e => await gameLogic.producerEventBus.send(e))
     }
 }

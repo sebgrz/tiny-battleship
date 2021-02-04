@@ -10,6 +10,6 @@ export class CreateGameCommandHandler implements IEventHandler<CreateGameCommand
         let events = aggr.getPendingEvents()
         await gameLogic.eventStore.saveEvents(gameID, events)
 
-        events.forEach(async e => gameLogic.producerEventBus.send(e))
+        events.forEach(async e => await gameLogic.producerEventBus.send(e))
     }
 }
