@@ -117,3 +117,4 @@ dist
 *.code-workspace
 
 out
+protos-gen
