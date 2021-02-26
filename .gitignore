@@ -117,4 +117,5 @@ dist
 *.code-workspace
 
 out
-protos-gen
+src/protos-gen/*.ts
+src/protos-gen/*.js

@@ -16,6 +16,5 @@
     "lerna": "^3.22.1",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.3"
-  },
-  "dependencies": {}
+  }
 }
