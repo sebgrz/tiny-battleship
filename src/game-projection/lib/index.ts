@@ -1,6 +1,7 @@
 import { IEventBusConsumer, RabbitMQEventBus } from "@tb/core"
 import { eventsManager } from "./eventhandles"
 import env from 'dotenv'
+import { GamesState } from "./state/games-state"
 
 env.config({ path: "../.env" })
 
@@ -9,7 +10,8 @@ export const gameProjection = {
         process.env.RABBITMQ_ENDPOINT as string,
         process.env.RABBITMQ_GAMESLOGIC_EVENTS_EXCHANGE as string,
         process.env.RABBITMQ_GAME_QUEUE as string) as IEventBusConsumer,
-    eventsManager: eventsManager
+    eventsManager: eventsManager,
+    state: {} as GamesState
 }
 
 let start = async () => {
