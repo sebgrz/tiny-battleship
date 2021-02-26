@@ -1,5 +1,5 @@
 import { IEventBusConsumer, RabbitMQEventBus } from "@tb/core"
-import { eventsManager } from "./eventhandles"
+import { eventsManager } from "./eventhandlers"
 import env from 'dotenv'
 import { GamesState } from "./state/games-state"
 
