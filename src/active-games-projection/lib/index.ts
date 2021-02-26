@@ -21,15 +21,17 @@ let start = async () => {
 
     let srv = new grpc.Server()
     srv.addService(grpc_handlers.service, grpc_handlers.handler)
-    srv.bindAsync("0.0.0.0:11234", grpc.ServerCredentials.createInsecure(), (e, p) => {
-        if (e) {
-            console.error(e)
-            return
-        }
-        console.log(`service is listening on port ${p}`)
-    })
+    srv.bindAsync(`0.0.0.0:${process.env.ACTIVE_GAMES_PROJECTION_SVC_GRPC_PORT}`,
+        grpc.ServerCredentials.createInsecure(),
+        (e, p) => {
+            if (e) {
+                console.error(e)
+                return
+            }
+            console.log(`service is listening on port ${p}`)
+        })
     srv.start()
-    
+
     console.log("start events bus consumer...")
     await activeGamesProjection.consumerEventBus.consume(async ev => {
         await activeGamesProjection.eventsManager.execute(ev)
