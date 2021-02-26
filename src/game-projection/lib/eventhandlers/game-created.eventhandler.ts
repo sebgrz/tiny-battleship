@@ -9,11 +9,13 @@ export class GameCreatedEventHandler implements IEventHandler<GameCreatedEvent> 
         state.games[command.gameID] = {
             id: command.gameID,
             name: command.name,
+            winnerPlayerID: "",
             players: [
                 {
                     connectionID: command.creatorConnectionId,
                     username: command.creatorPlayer,
                     board: command.creatoreBoard!,
+                    shipsCount: command.shipsCount
                 }
             ]
         }

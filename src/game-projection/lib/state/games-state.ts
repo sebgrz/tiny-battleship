@@ -5,11 +5,13 @@ export type GamesState = {
 export type Game = {
     id: string,
     name: string,
+    winnerPlayerID: string,
     players: Player[]
 }
 
 export type Player = {
     connectionID: string,
     username: string
-    board: number[][]
+    board: number[][],
+    shipsCount: number
 }

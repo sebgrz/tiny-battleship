@@ -14,7 +14,8 @@ export class JoinedToGameEventHandler implements IEventHandler<JoinedToGameEvent
         game.players.push({
             connectionID: command.connectionID,
             username: command.player,
-            board: command.board!
+            board: command.board!,
+            shipsCount: command.shipsCount
         })
 
         console.log(`JoinedToGameEventHandler end - game id: ${command.gameID}`)
