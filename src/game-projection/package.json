@@ -1,0 +1,33 @@
+{
+  "name": "@tb/game-projection",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Seba G. <sg@hetacode.pl>",
+  "homepage": "https://github.com/hetacode/tiny-battleship#readme",
+  "license": "ISC",
+  "main": "out/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hetacode/tiny-battleship.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/hetacode/tiny-battleship/issues"
+  },
+  "dependencies": {
+    "@tb/commons": "^0.0.0",
+    "@tb/core": "^0.0.0"
+  }
+}
