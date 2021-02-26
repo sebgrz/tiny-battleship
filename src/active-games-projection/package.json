@@ -1,0 +1,34 @@
+{
+  "name": "@tb/active-games-projection",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Seba G. <sg@hetacode.pl>",
+  "homepage": "https://github.com/hetacode/tiny-battleship#readme",
+  "license": "ISC",
+  "main": "out/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hetacode/tiny-battleship.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -dfr out && tsc --build tsconfig.json",
+    "start": "node out/index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/hetacode/tiny-battleship/issues"
+  },
+  "dependencies": {
+    "@tb/commons": "^0.0.0",
+    "@tb/core": "^0.0.0",
+    "@tb/protos-gen": "^0.0.0",
+    "dotenv": "^8.2.0",
+    "grpc": "^1.24.4"
+  }
+}

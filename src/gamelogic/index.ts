@@ -1,9 +1,8 @@
 import { commandsManager } from "./command-handlers";
 import env from "dotenv";
 import { EventStoreDB, IEventBusConsumer, IEventStore, RabbitMQEventBus, IEventBusSender } from "@tb/core";
-import { ReadReq } from "@eventstore/db-client/generated/streams_pb";
 
-env.config()
+env.config({path: "../.env"})
 
 export const gameLogic = {
     eventStore: new EventStoreDB(process.env.EVENTSTOREDB_ENDPOINT as string, "game_") as IEventStore,

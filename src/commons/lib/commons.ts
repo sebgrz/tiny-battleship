@@ -24,5 +24,5 @@ export {
     GameOverEvent,
     HitFieldEvent,
     MishitFieldEvent,
-    GameOverReason
+    GameOverReason,
 }

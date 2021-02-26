@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+service ActiveGamesService {
+    rpc GetGames(GetGamesRequest) returns (GetGamesResponse);
+}
+
+message GetGamesRequest{
+
+}
+
+message GetGamesResponse {
+    repeated Game games = 1;
+}
+
+message Game {
+    string id = 1;
+    string name = 2;
+    bool isOpen = 3;
+}
