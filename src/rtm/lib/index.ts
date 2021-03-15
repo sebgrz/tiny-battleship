@@ -9,19 +9,20 @@ import { eventsManager } from './eventhandlers'
 env.config({ path: "../.env" })
 
 const PORT = process.env.RTM_SVC_WS_PORT as string
-const rtm = {
+const srv = new http.Server(expressApp)
+const io = new socket.Server(srv)
+export const rtm = {
     consumerEventBus: new RabbitMQEventBus(
         process.env.RABBITMQ_ENDPOINT as string,
         process.env.RABBITMQ_GAMESLOGIC_EVENTS_EXCHANGE as string,
         process.env.RABBITMQ_RTM_QUEUE as string) as IEventBusConsumer,
     eventsManager: eventsManager,
-    clients: {} as ClientsState
+    clients: { clients: {} } as ClientsState,
+
 }
 
-let srv = new http.Server(expressApp)
-let io = new socket.Server(srv)
-
 io.on("connection", c => {
+    rtm.clients.clients[c.id] = c
 
     c.on("disconnect", d => {
 

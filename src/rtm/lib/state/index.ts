@@ -1,3 +1,5 @@
+import { Socket } from "socket.io";
+
 export type ClientsState = {
-    clients: {[key: string]: string}
+    clients: {[key: string]: Socket}
 } 
