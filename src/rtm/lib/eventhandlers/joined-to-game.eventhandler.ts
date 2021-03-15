@@ -1,4 +1,5 @@
 import { IEventHandler, JoinedToGameEvent } from "@tb/commons";
+import { sendEventIfCan } from ".";
 import { rtm } from "..";
 
 export class JoinedToGameEventHandler implements IEventHandler<JoinedToGameEvent>{
@@ -6,17 +7,8 @@ export class JoinedToGameEventHandler implements IEventHandler<JoinedToGameEvent
         console.log(`JoinedToGameEventHandler start - game id: ${command.gameID}`)
 
         let json = JSON.stringify(command)
-        if (!(command.connectionID in rtm.clients.clients)) {
-            console.log(`creator client: "${command.connectionID}" doesn't exists`)
-        } else {
-            rtm.clients.clients[command.connectionID].emit(json)
-        }
-
-        if (!(command.opponentConnectionID in rtm.clients.clients)) {
-            console.log(`opponent client: "${command.opponentConnectionID}" doesn't exists`)
-        } else {
-            rtm.clients.clients[command.opponentConnectionID].emit(json)
-        }
+        sendEventIfCan(command.connectionID, json, `creator client: "${command.connectionID}" doesn't exists`)
+        sendEventIfCan(command.opponentConnectionID, json, `opponent client: "${command.opponentConnectionID}" doesn't exists`)
 
         console.log(`JoinedToGameEventHandler end - game id: ${command.gameID}`)
     };

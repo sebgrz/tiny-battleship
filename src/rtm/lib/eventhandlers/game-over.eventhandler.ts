@@ -1,4 +1,5 @@
 import { GameOverEvent, IEventHandler } from "@tb/commons";
+import { sendEventIfCan } from ".";
 import { rtm } from "..";
 
 export class GameOverEventHandler implements IEventHandler<GameOverEvent> {
@@ -6,17 +7,8 @@ export class GameOverEventHandler implements IEventHandler<GameOverEvent> {
         console.log(`GameOverEventHandler start - game id ${command.gameID}`)
 
         let json = JSON.stringify(command)
-        if (!(command.loserConnectionID in rtm.clients.clients)) {
-            console.log(`loser client: "${command.loserConnectionID}" doesn't exists`)
-        } else {
-            rtm.clients.clients[command.loserConnectionID].emit(json)
-        }
-
-        if (!(command.winnerConnectionID in rtm.clients.clients)) {
-            console.log(`winner client: "${command.winnerConnectionID}" doesn't exists`)
-        } else {
-            rtm.clients.clients[command.winnerConnectionID].emit(json)
-        }
+        sendEventIfCan(command.loserConnectionID, json, `loser client: "${command.loserConnectionID}" doesn't exists`)
+        sendEventIfCan(command.winnerConnectionID, json, `winner client: "${command.winnerConnectionID}" doesn't exists`)
 
         console.log(`GameOverEventHandler end - game id ${command.gameID}`)
     }

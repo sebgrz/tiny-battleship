@@ -37,7 +37,12 @@ srv.listen(PORT, () => {
 let startMq = async () => {
     console.log("start events bus consumer...")
     await rtm.consumerEventBus.consume(async ev => {
-        await rtm.eventsManager.execute(ev)
+        try {
+            await rtm.eventsManager.execute(ev)
+        } catch (err) {
+            console.error(`cannot recognize event ${ev.type}`)
+        }
+
     })
 }
 
