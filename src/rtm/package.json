@@ -1,0 +1,36 @@
+{
+  "name": "@tb/rtm",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Seba G. <sg@hetacode.pl>",
+  "homepage": "https://github.com/hetacode/tiny-battleship#readme",
+  "license": "ISC",
+  "main": "out/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hetacode/tiny-battleship.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc",
+    "start": "node out/index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/hetacode/tiny-battleship/issues"
+  },
+  "dependencies": {
+    "@tb/commons": "^0.0.0",
+    "@tb/core": "^0.0.0",
+    "@types/express": "^4.17.11",
+    "@types/socket.io": "^2.1.13",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "socket.io": "^4.0.0"
+  }
+}
