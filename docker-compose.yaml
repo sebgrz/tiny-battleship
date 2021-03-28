@@ -11,3 +11,12 @@ services:
       - 2113:2113
       - 1113:1113
     command: --insecure --run-projections=All --enable-atom-pub-over-http
+  active-games-projection:
+    build:
+      context: .
+      dockerfile: src/active-games-projection/Dockerfile
+    image: tb-active-games-projection
+    environment:
+      - EVENTSTOREDB_ENDPOINT=eventstore-db:2113
+      - RABBITMQ_ENDPOINT=amqp://rabbit:5672
+  
