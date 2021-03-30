@@ -16,6 +16,8 @@ services:
       context: .
       dockerfile: src/active-games-projection/Dockerfile
     image: tb-active-games-projection
+    command: "./wait-for-it.sh rabbit:5672 -t 0 -- node out/index.js"
+    env_file: src/.env
     environment:
       - EVENTSTOREDB_ENDPOINT=eventstore-db:2113
       - RABBITMQ_ENDPOINT=amqp://rabbit:5672

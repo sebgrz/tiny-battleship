@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
 GRPC_TOOLS_NODE_PROTOC_PLUGIN="./node_modules/.bin/grpc_tools_node_protoc_plugin"
