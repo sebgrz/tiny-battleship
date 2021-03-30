@@ -21,7 +21,6 @@ jobs:
     - run: |
         npm install -g lerna
         npm install
-        npm ci
         ./proto-gen.sh
         lerna bootstrap
         lerna run build
