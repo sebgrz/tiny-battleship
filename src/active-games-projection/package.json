@@ -29,7 +29,7 @@
     "@tb/core": "^0.0.0",
     "@tb/protos-gen": "^0.0.0",
     "dotenv": "^8.2.0",
-    "grpc": "^1.24.4",
-    "google-protobuf": "3.15.6"
+    "google-protobuf": "^3.15.6",
+    "grpc": "^1.24.4"
   }
 }
