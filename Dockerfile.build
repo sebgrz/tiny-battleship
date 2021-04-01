@@ -1,9 +1,13 @@
 FROM node:14 as build
 WORKDIR /build
 COPY . /build/
-RUN  npm install -g lerna \
+RUN npm install -g lerna \
     && npm ci \
-    && ./proto-gen.sh
-RUN lerna bootstrap \
-    && lerna run build
+    && ./proto-gen.sh \
+    && lerna bootstrap \
+    && mkdir /build/libs
+
+RUN cp -rf /build/src/commons /build/libs/
+RUN cp -rf /build/src/core /build/libs/
+RUN cp -rf /build/src/protos-gen /build/libs/
 CMD true
