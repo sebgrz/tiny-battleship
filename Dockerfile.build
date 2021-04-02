@@ -5,6 +5,7 @@ RUN npm install -g lerna \
     && npm ci \
     && ./proto-gen.sh \
     && lerna bootstrap \
+    && lerna run build \
     && mkdir /build/libs
 
 RUN cp -rf /build/src/commons /build/libs/
