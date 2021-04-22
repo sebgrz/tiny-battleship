@@ -1,0 +1,37 @@
+POST http://localhost:5080/create-game
+Content-Type: application/json
+
+{
+    "username": "s",
+    "connectionId": "con1234",
+    "gameName": "great game 1",
+    "board": [
+        [0, 0, 1],
+        [1, 0, 0],
+        [0, 1, 1]
+    ]
+}
+
+###
+
+POST http://localhost:5080/join-game
+Content-Type: application/json
+
+{
+    "username": "g",
+    "connectionId": "con4321",
+    "gameID": "f466aaf7-a560-4497-9820-9906835a160b",
+    "board": [
+        [0, 0, 1],
+        [0, 0, 1],
+        [0, 1, 1]
+    ]
+}
+
+###
+
+GET http://localhost:5080/leave-game/f466aaf7-a560-4497-9820-9906835a160b/con4321
+
+###
+
+GET http://localhost:5080/shot/game123/con123/4/6
