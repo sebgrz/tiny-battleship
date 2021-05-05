@@ -1,6 +1,7 @@
 import express, { Response } from "express"
 import { CreateGameCommand, JoinGameCommand, LeaveGameCommand, ShotCommand } from "@tb/commons"
 import { gateway } from ".."
+import { GetGameRequest } from "@tb/protos-gen/games_pb"
 
 const createGameHandler = async (req: express.Request, res: Response) => {
     let command = Object.assign(new CreateGameCommand(), req.body)
@@ -38,6 +39,20 @@ const shotHandler = async (req: express.Request, res: Response) => {
     await gateway.producerEventBus.send(command)
 
     console.log(`shot\n${JSON.stringify(command)}`)
+    res.sendStatus(200)
+}
+const getGame = async (req: express.Request, res: Response) => {
+    let gameID = req.params["gameId"]
+    let connectionId = req.params["connectionId"]
+
+    let getGameReq = new GetGameRequest()
+    getGameReq.setGameid(gameID)
+    getGameReq.setPlayerconnectionid(connectionId)
+
+    gateway.gamesServiceClient.getGame(getGameReq, (e, r) => {
+        console.error("unimplemented")    
+    })
+    
     res.sendStatus(200)
 }
 
