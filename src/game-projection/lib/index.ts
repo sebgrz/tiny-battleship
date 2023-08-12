@@ -13,7 +13,7 @@ export const gameProjection = {
         process.env.RABBITMQ_GAMESLOGIC_EVENTS_EXCHANGE as string,
         process.env.RABBITMQ_GAME_QUEUE as string) as IEventBusConsumer,
     eventsManager: eventsManager,
-    state: {} as GamesState
+    state: {games: {}} as GamesState
 }
 
 let start = async () => {

@@ -1,0 +1,37 @@
+{
+  "name": "@tb/gateway",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Seba G. <sg@hetacode.pl>",
+  "homepage": "https://github.com/hetacode/tiny-battleship#readme",
+  "license": "ISC",
+  "main": "out/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hetacode/tiny-battleship.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node out/index.js",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/hetacode/tiny-battleship/issues"
+  },
+  "dependencies": {
+    "@tb/commons": "^0.0.0",
+    "@tb/core": "^0.0.0",
+    "@tb/protos-gen": "^0.0.0",
+    "@types/express": "^4.17.11",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "grpc": "^1.24.9"
+  }
+}
